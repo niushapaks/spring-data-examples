@@ -49,8 +49,8 @@ class CustomerRepositoryIntegrationTests {
 				.as(StepVerifier::create) //
 				.assertNext(actual -> {
 
-					assertThat(dave.id()).isNull(); // immutable before save
-					assertThat(actual.id()).isNotNull(); // after save
+					assertThat(dave.getId()).isNull(); // immutable before save
+					assertThat(actual.getId()).isNotNull(); // after save
 				}).verifyComplete();
 	}
 }

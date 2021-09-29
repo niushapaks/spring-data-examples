@@ -20,9 +20,24 @@ import org.springframework.data.annotation.Id;
 /**
  * @author Mark Paluch
  */
-record Customer(@Id Long id, String firstname, String lastname) {
+class Customer {
+
+	@Id
+	private Long id;
+	private String firstname;
+	private String lastname;
+
+	public Customer(Long id, String firstname, String lastname) {
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
 
 	public Customer withId(long id) {
 		return new Customer(id, firstname, lastname);
+	}
+
+	public Long getId() {
+		return this.id;
 	}
 }

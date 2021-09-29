@@ -39,7 +39,7 @@ class ApplicationConfiguration {
 
 		return (customer, sqlIdentifier) -> {
 
-			if (customer.id() == null) {
+			if (customer.getId() == null) {
 
 				return databaseClient.sql("SELECT primary_key.nextval") //
 						.map(row -> row.get(0, Long.class)) //

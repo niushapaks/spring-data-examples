@@ -22,7 +22,18 @@ import org.springframework.data.annotation.Id;
 /**
  * @author Oliver Gierke
  */
-record Customer(@Id Integer id, String firstname, String lastname) {
+class Customer {
+
+	public Customer(Integer id, String firstname, String lastname) {
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+
+	@Id
+	private Integer id;
+	private String firstname;
+	private String lastname;
 
 	boolean hasId() {
 		return id != null;
@@ -33,8 +44,11 @@ record Customer(@Id Integer id, String firstname, String lastname) {
 		if (this == o) {
 			return true;
 		}
-		if (!(o instanceof Customer customer)) {
+		Customer customer;
+		if (!(o instanceof Customer)) {
 			return false;
+		} else {
+			customer = (Customer) o;
 		}
 		return Objects.equals(firstname, customer.firstname) && Objects.equals(lastname, customer.lastname);
 	}
@@ -42,5 +56,9 @@ record Customer(@Id Integer id, String firstname, String lastname) {
 	@Override
 	public int hashCode() {
 		return Objects.hash(firstname, lastname);
+	}
+
+	public String getFirstname() {
+		return firstname;
 	}
 }
